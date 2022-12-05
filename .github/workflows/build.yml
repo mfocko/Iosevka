@@ -1,0 +1,33 @@
+name: Build fonts
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - font: pragmasevka
+          - font: iosevka-comfy
+          - font: iosevka-comfy-wide
+          - font: iosevka-comfy-wide-fixed
+          - font: iosevka-comfy-wide-duo
+          - font: iosevka-comfy-motion
+          - font: iosevky-comfy-motion-fixed
+          - font: iosevka-comfy-motion-duo
+          - font: iosevka-comfy-fixed
+          - font: iosevka-comfy-duo
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+      - name: Remove old build
+        run: rm -rf dist
+      - name: Build fonts
+        run: docker run -v $(pwd):/build avivace/iosevka-build ttf::$font
+      - name: Upload the files
+        uses: actions/upload-artifact@v2
+        with:
+          name: "$font"
+          path: "dist/"
