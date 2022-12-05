@@ -31,5 +31,5 @@ jobs:
       - name: Upload the files
         uses: actions/upload-artifact@v2
         with:
-          name: "$font"
+          name: ${{ matrix.font }}
           path: "dist/"
