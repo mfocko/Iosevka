@@ -22,10 +22,12 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
+      - name: Build the image
+        run: docker build -t iosevka_build . -f Dockerfile
       - name: Remove old build
         run: rm -rf dist
       - name: Build fonts
-        run: docker run -v $(pwd):/build avivace/iosevka-build ttf::$font
+        run: docker run -v $(pwd):/build iosevka_build ttf::${{ matrix.font }}
       - name: Upload the files
         uses: actions/upload-artifact@v2
         with:
