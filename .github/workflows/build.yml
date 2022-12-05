@@ -14,7 +14,7 @@ jobs:
           - font: iosevka-comfy-wide-fixed
           - font: iosevka-comfy-wide-duo
           - font: iosevka-comfy-motion
-          - font: iosevky-comfy-motion-fixed
+          - font: iosevka-comfy-motion-fixed
           - font: iosevka-comfy-motion-duo
           - font: iosevka-comfy-fixed
           - font: iosevka-comfy-duo
