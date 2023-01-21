@@ -35,9 +35,8 @@ echo "Using build plan: $BUILD_PARAM"
 # Find the latest font version if the font version environment variable is not
 # set. The `-n` operator checks if the length of the string is nonzero.
 if [[ -z "$FONT_VERSION" ]]; then
-    FONT_VERSION=$(curl 'https://api.github.com/repos/be5invis/Iosevka/releases?per_page=1' \
-    | jq -r '.[0].tag_name' \
-    | grep -oP '(?<=^v)([0-9]+\.)*[0-9]+$' )
+    GITHUB_URL="https://api.github.com/repos/be5invis/Iosevka/releases/latest"
+    FONT_VERSION=$(curl $GITHUB_URL | jq -r '.tag_name' - | grep -oP '(?<=^v)([0-9]+\.)*[0-9]+$')
 fi
 
 echo "Using font version: ${FONT_VERSION}"
